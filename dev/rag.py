@@ -37,13 +37,10 @@ while True:
     # Use a 'colecao_documentos' para buscar os 2 textos que mais 
     # se aproximam semanticamente da 'pergunta' do usuário.
     
-    # resultados = colecao_documentos.query(...)
+    resultados = colecao_documentos.query(query_texts=[pergunta], n_results=2)
     
-    # textos_recuperados = resultados['documents'][0]
-    # contexto_unido = " ".join(textos_recuperados)
-    
-    # -> Apague esse contexto falso e use a lógica de busca acima:
-    contexto_unido = "CONTEXTO FALSO PARA TESTE." 
+    textos_recuperados = resultados['documents'][0]
+    contexto_unido = " ".join(textos_recuperados)
 
     print(f"\nDocumentos encontrados pelo Banco Vetorial: \n{contexto_unido}\n")
 
@@ -55,7 +52,8 @@ while True:
     prompt_sistema = f"""
     Você é um assistente interno corporativo. 
     Responda a pergunta do usuário baseando-se APENAS nas informações abaixo.
-    Se a informação não estiver no texto, diga "Não encontrei essa regra".
+    Se a informação não estiver no texto, diga "Não encontrei essa regra". 
+    Você é liberado para fazer correlações com o mundo real.
     
     CONTEXTO DA EMPRESA:
     {contexto_unido}
@@ -64,15 +62,15 @@ while True:
     # ----------------------------------------------------------------
     # TODO 3: GERAÇÃO
     # ----------------------------------------------------------------
-    # resposta = cliente_ia.chat.completions.create(
-    #     model="gpt-4o-mini", 
-    #     temperature=0.1,
-    #     messages=[
-    #         {"role": "system", "content": prompt_sistema},
-    #         {"role": "user", "content": pergunta}
-    #     ]
-    # )
+    resposta = cliente_ia.chat.completions.create(
+         model="gpt-4o", 
+         temperature=0.7,
+         messages=[
+             {"role": "system", "content": prompt_sistema},
+             {"role": "user", "content": pergunta}
+         ]
+    )
     
-    # print(f"Resposta da IA: {resposta.choices[0].message.content}\n")
+    print(f"Resposta da IA: {resposta.choices[0].message.content}\n")
     
     print("-" * 50)
