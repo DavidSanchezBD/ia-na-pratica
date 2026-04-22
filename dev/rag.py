@@ -52,8 +52,8 @@ while True:
     prompt_sistema = f"""
     Você é um assistente interno corporativo. 
     Responda a pergunta do usuário baseando-se APENAS nas informações abaixo.
-    Se a informação não estiver no texto, diga "Não encontrei essa regra". 
     Você é liberado para fazer correlações com o mundo real.
+    Se a informação não estiver no texto, diga "Não encontrei essa regra mas posso ajudar de outra forma" antes de responder.
     
     CONTEXTO DA EMPRESA:
     {contexto_unido}
