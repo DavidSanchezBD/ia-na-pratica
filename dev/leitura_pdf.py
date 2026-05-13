@@ -21,6 +21,8 @@ with open(caminho_arquivo, 'rb') as arquivo:
     for pagina in leitor_pdf.pages:
         texto_bruto += pagina.extract_text()
 
+
+
 # ====================================================================
 # TODO 2: EXTRAÇÃO INTELIGENTE COM IA (Structured Output)
 # ====================================================================
